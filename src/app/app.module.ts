@@ -9,20 +9,30 @@ import {FormsModule} from '@angular/forms';
 import {DownloaderService} from './download-panel/downloader/downloader.service';
 import {HttpClientModule} from '@angular/common/http';
 import {OperaUrlHandlerService} from './download-panel/downloader/opera-url-handler.service';
-import {IframeService} from './download-panel/downloader/iframe.service';
+import {DownloadLinkService} from './download-panel/downloader/download-link.service';
+import {InstructionsComponent} from './instructions/instructions.component';
+import {RouterModule} from '@angular/router';
+import {downloadPanelRoute} from './download-panel/download-panel.route';
+import {instructionRoute} from './instructions/instructions.route';
 
 @NgModule({
   declarations: [
     AppComponent,
     DownloaderComponent,
+    InstructionsComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([downloadPanelRoute, instructionRoute])
   ],
-  providers: [DownloaderService, OperaUrlHandlerService, IframeService],
+  providers: [
+    DownloaderService,
+    OperaUrlHandlerService,
+    DownloadLinkService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

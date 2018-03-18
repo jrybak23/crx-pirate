@@ -1,7 +1,7 @@
 import {UrlHandler} from './url-handler';
 
 export class OperaUrlHandlerService implements UrlHandler {
-  private static reg = new RegExp('^https:\\/\\/addons.opera.com\\/[a-z]+\\/extensions\\/details\\/([a-z-]+)\\/*\\?*');
+  private static reg = new RegExp('^https:\\/\\/addons.opera.com\\/[a-z-]+\\/extensions\\/details\\/([a-z-]+)\\/*\\?*');
 
   isPluginPageUrl(url: string): boolean {
     return OperaUrlHandlerService.reg.test(url);

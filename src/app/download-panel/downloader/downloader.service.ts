@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {OperaUrlHandlerService} from './opera-url-handler.service';
-import {IframeService} from './iframe.service';
+import {DownloadLinkService} from './download-link.service';
 
 @Injectable()
 export class DownloaderService {
 
-  constructor(private operaUrlHandlerService: OperaUrlHandlerService, private iframe: IframeService) {
+  constructor(private operaUrlHandlerService: OperaUrlHandlerService, private downloadLinkService: DownloadLinkService) {
   }
 
   download(url: string) {
@@ -14,9 +14,7 @@ export class DownloaderService {
       return;
     }
 
-    this.iframe.navigate(url);
-    let pluginName = this.operaUrlHandlerService.extractPluginName(url);
     let downloadPluginUrl = this.operaUrlHandlerService.getDownloadPluginUrl(url);
-    this.iframe.addDownloadFileScript(downloadPluginUrl, `${pluginName}.crx`);
+    this.downloadLinkService.clickLink(downloadPluginUrl);
   }
 }
